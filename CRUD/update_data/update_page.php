@@ -11,7 +11,7 @@ if(isset($_GET['id'])){
         $statment->bindParam(':id',$id);
         $statment->execute();
         $stud_inf=$statment->fetch(PDO::FETCH_ASSOC);
-        // print_r($stud_inf);
+        
 }
     else{
         echo "id not set";
@@ -46,11 +46,10 @@ if(isset($_POST['update_stud'])){
     $statment->bindParam(':std_id',$id);
     
     $statment->execute();
-    header('location:../index.php?message= update sucesssfuly');
+    header('location:../index.php?message= update sucesssfuly');}
 
-    
 
-}
+
 ?>
 
 <form action="" method="post">
