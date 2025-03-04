@@ -45,8 +45,26 @@ class Student{
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function update_item($data) {
+        $query = "UPDATE `students` 
+                  SET `first_name`=:fname, `last_name`=:lname, `email`=:std_email, 
+                      `date_of_birth`=:std_dob, `gender`=:std_gen, `major`=:std_ma, 
+                      `enrollment_year`=:std_en 
+                  WHERE `student_id`=:std_id";
+        $statment = $this->conn->prepare($query);
+        $statment->bindParam(':fname', $data['first_name']);
+        $statment->bindParam(':lname', $data['last_name']);
+        $statment->bindParam(':std_email', $data['email']);
+        $statment->bindParam(':std_dob', $data['date_of_birth']);
+        $statment->bindParam(':std_gen', $data['gender']);
+        $statment->bindParam(':std_ma', $data['major']);
+        $statment->bindParam(':std_en', $data['enrollment_year']);
+        $statment->bindParam(':std_id', $data['student_id']);
+        $statment->execute();
+    }
+    
+
 }
-
-
 
 ?>
